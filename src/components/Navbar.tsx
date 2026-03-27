@@ -18,11 +18,11 @@ const Navbar = ({ activeSection }: NavbarProps) => {
       initial={{ opacity: 0, y: -16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="fixed top-0 left-0 right-0 z-50 border-b border-white/[0.06] bg-[#080d1a]/90 backdrop-blur-md"
+      className="fixed top-0 left-0 right-0 z-50 border-b border-moss/10 bg-forest/90 backdrop-blur-md"
     >
       <div className="max-w-6xl mx-auto px-6 sm:px-8">
         <div className="flex justify-between items-center h-16">
-          <span className="text-base font-semibold tracking-tight text-white">
+          <span className="text-base font-semibold tracking-tight text-cream">
             Monal Dasari
           </span>
 
@@ -33,8 +33,8 @@ const Navbar = ({ activeSection }: NavbarProps) => {
                 href={`#${item.id}`}
                 className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors duration-200 ${
                   activeSection === item.id
-                    ? 'text-indigo-400 bg-indigo-500/10'
-                    : 'text-slate-400 hover:text-white hover:bg-white/5'
+                    ? 'text-moss bg-sage/15'
+                    : 'text-cream/50 hover:text-cream hover:bg-cream/5'
                 }`}
               >
                 {item.label}
@@ -44,7 +44,7 @@ const Navbar = ({ activeSection }: NavbarProps) => {
               href="/resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="ml-2 px-4 py-1.5 text-sm font-medium bg-indigo-600 hover:bg-indigo-500 text-white rounded-md transition-colors duration-200"
+              className="ml-2 px-4 py-1.5 text-sm font-medium bg-sage hover:bg-moss text-forest rounded-md transition-colors duration-200"
             >
               Resume
             </a>

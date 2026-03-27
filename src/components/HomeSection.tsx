@@ -8,21 +8,9 @@ interface HomeSectionProps {
 
 const HomeSection = ({ onResumeClick }: HomeSectionProps) => {
   const socialLinks = [
-    {
-      href: 'https://www.linkedin.com/in/monaldasari',
-      icon: FaLinkedin,
-      label: 'LinkedIn',
-    },
-    {
-      href: 'https://github.com/monaldasari',
-      icon: FaGithub,
-      label: 'GitHub',
-    },
-    {
-      href: 'https://www.instagram.com/moona._.333/',
-      icon: FaInstagram,
-      label: 'Instagram',
-    },
+    { href: 'https://www.linkedin.com/in/monaldasari', icon: FaLinkedin, label: 'LinkedIn' },
+    { href: 'https://github.com/monaldasari', icon: FaGithub, label: 'GitHub' },
+    { href: 'https://www.instagram.com/moona._.333/', icon: FaInstagram, label: 'Instagram' },
   ]
 
   return (
@@ -34,13 +22,13 @@ const HomeSection = ({ onResumeClick }: HomeSectionProps) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <span className="inline-block text-xs font-semibold tracking-widest text-indigo-400 uppercase mb-6">
+            <span className="inline-block text-xs font-semibold tracking-widest text-sage uppercase mb-6">
               Web Developer Intern
             </span>
-            <h1 className="text-5xl md:text-6xl font-bold text-white mb-5 leading-[1.1] tracking-tight">
+            <h1 className="text-5xl md:text-6xl font-bold text-cream mb-5 leading-[1.1] tracking-tight">
               Monal Dasari
             </h1>
-            <p className="text-base text-slate-400 mb-8 max-w-md leading-relaxed">
+            <p className="text-base text-cream/55 mb-8 max-w-md leading-relaxed">
               Building clean, fast web experiences with a focus on good design and solid fundamentals.
             </p>
 
@@ -52,7 +40,7 @@ const HomeSection = ({ onResumeClick }: HomeSectionProps) => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={link.label}
-                  className="p-2.5 rounded-md border border-white/10 text-slate-400 hover:text-white hover:border-white/25 transition-all duration-200"
+                  className="p-2.5 rounded-md border border-moss/20 text-cream/50 hover:text-cream hover:border-moss/50 transition-all duration-200"
                 >
                   <link.icon size={18} />
                 </a>
@@ -62,13 +50,13 @@ const HomeSection = ({ onResumeClick }: HomeSectionProps) => {
             <div className="flex flex-col sm:flex-row gap-3">
               <button
                 onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
-                className="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-medium rounded-md transition-colors duration-200"
+                className="px-6 py-2.5 bg-sage hover:bg-moss text-forest text-sm font-semibold rounded-md transition-colors duration-200"
               >
                 View Projects
               </button>
               <button
                 onClick={onResumeClick}
-                className="px-6 py-2.5 border border-white/10 hover:border-white/25 text-slate-300 hover:text-white text-sm font-medium rounded-md transition-all duration-200"
+                className="px-6 py-2.5 border border-moss/25 hover:border-moss/60 text-cream/70 hover:text-cream text-sm font-medium rounded-md transition-all duration-200"
               >
                 View Resume
               </button>
@@ -81,7 +69,7 @@ const HomeSection = ({ onResumeClick }: HomeSectionProps) => {
             transition={{ duration: 0.6, delay: 0.15 }}
             className="flex justify-center md:justify-end"
           >
-            <div className="relative w-72 h-72 md:w-80 md:h-80 rounded-2xl overflow-hidden border border-white/10">
+            <div className="relative w-72 h-72 md:w-80 md:h-80 rounded-2xl overflow-hidden border border-moss/20">
               <Image
                 src="/profile.jpg"
                 alt="Monal Dasari"

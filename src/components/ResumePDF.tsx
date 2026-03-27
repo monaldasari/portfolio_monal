@@ -16,92 +16,68 @@ export default function ResumePDF({ isOpen, onClose }: ResumePDFProps) {
 
   return (
     <>
-      {/* Backdrop */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         onClick={onClose}
-        className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40"
+        className="fixed inset-0 bg-forest/80 backdrop-blur-sm z-40"
       />
 
-      {/* Modal */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.95, y: 20 }}
+        initial={{ opacity: 0, scale: 0.97, y: 16 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.95, y: -20 }}
-        transition={{ duration: 0.3 }}
+        exit={{ opacity: 0, scale: 0.97, y: -16 }}
+        transition={{ duration: 0.25 }}
         className="fixed inset-0 z-50 flex items-center justify-center p-4"
       >
-        <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden border border-slate-700/50">
-          {/* Header */}
-          <div className="flex items-center justify-between p-6 border-b border-slate-700/30 bg-slate-800/50">
+        <div className="bg-olive border border-moss/20 rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
+          <div className="flex items-center justify-between p-5 border-b border-moss/15">
             <div>
-              <h2 className="text-2xl font-bold text-white">My Resume</h2>
-              <p className="text-slate-400 text-sm mt-1">Monal Dasari - Web Developer</p>
+              <h2 className="text-lg font-semibold text-cream">Resume</h2>
+              <p className="text-cream/40 text-sm mt-0.5">Monal Dasari — Web Developer</p>
             </div>
             <button
               onClick={onClose}
-              className="p-2 hover:bg-slate-700 rounded-lg transition-colors text-slate-300 hover:text-white"
+              className="p-2 hover:bg-cream/5 rounded-md transition-colors text-cream/40 hover:text-cream"
             >
-              <FaTimes size={24} />
+              <FaTimes size={18} />
             </button>
           </div>
 
-          {/* Content */}
-          <div className="p-6 overflow-y-auto max-h-[calc(90vh-120px)]">
-            {/* View Mode Selector */}
-            <div className="flex gap-4 mb-6">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+          <div className="p-5 overflow-y-auto max-h-[calc(90vh-80px)]">
+            <div className="flex gap-3 mb-5">
+              <button
                 onClick={() => setViewMode('embed')}
-                className={`flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition-all ${
+                className={`flex items-center gap-2 px-4 py-2 text-sm rounded-md font-medium transition-colors ${
                   viewMode === 'embed'
-                    ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/30'
-                    : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                    ? 'bg-sage text-forest'
+                    : 'border border-moss/20 text-cream/60 hover:text-cream hover:border-moss/40'
                 }`}
               >
-                <FaEye /> View
-              </motion.button>
-              <motion.a
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                <FaEye size={13} /> View
+              </button>
+              <a
                 href="/resume.pdf"
                 download="Monal_Dasari_Resume.pdf"
-                className="flex items-center gap-2 px-4 py-2 rounded-lg font-semibold bg-gradient-to-r from-green-600 to-emerald-600 text-white hover:from-green-700 hover:to-emerald-700 transition-all shadow-lg shadow-green-500/30"
+                className="flex items-center gap-2 px-4 py-2 text-sm rounded-md font-medium border border-moss/20 text-cream/60 hover:text-cream hover:border-moss/40 transition-colors"
               >
-                <FaDownload /> Download PDF
-              </motion.a>
+                <FaDownload size={13} /> Download PDF
+              </a>
             </div>
 
-            {/* Resume Preview/Embed */}
             {viewMode === 'embed' ? (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 }}
-                className="bg-white rounded-lg overflow-hidden"
-              >
+              <div className="rounded-lg overflow-hidden border border-moss/15">
                 <iframe
                   src="/resume.pdf#zoom=100"
-                  className="w-full h-[600px] rounded-lg"
+                  className="w-full h-[600px]"
                   title="Resume PDF"
                 />
-              </motion.div>
+              </div>
             ) : (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 }}
-                className="text-center py-12"
-              >
-                <div className="inline-block p-8 bg-gradient-to-br from-green-600/20 to-emerald-600/20 rounded-2xl border border-green-500/30">
-                  <FaDownload className="w-12 h-12 text-green-400 mx-auto mb-4" />
-                  <p className="text-slate-300 mb-4">Click the Download button above to get my resume</p>
-                  <p className="text-slate-400 text-sm">The PDF will be saved to your device</p>
-                </div>
-              </motion.div>
+              <div className="text-center py-12 text-cream/40 text-sm">
+                Click &quot;Download PDF&quot; above to save the resume to your device.
+              </div>
             )}
           </div>
         </div>
