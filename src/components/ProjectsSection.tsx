@@ -5,7 +5,7 @@ const ProjectsSection = () => {
   const projects = [
     {
       icon: FaLaptopCode,
-      title: 'Career Path - SGA.AI',
+      title: 'Career Path — SGA.AI',
       description: 'A project focused on guiding users with structured career insights and recommendations using AI-powered recommendations.',
     },
     {
@@ -21,50 +21,34 @@ const ProjectsSection = () => {
   ]
 
   return (
-    <section id="projects" className="py-40 relative overflow-hidden bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">
-      <div className="absolute -left-40 top-12 w-80 h-80 rounded-full bg-purple-600/10 blur-3xl" />
-      <div className="absolute right-0 bottom-12 w-80 h-80 rounded-full bg-indigo-600/10 blur-3xl" />
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+    <section id="projects" className="py-28 border-t border-white/[0.06]">
+      <div className="max-w-6xl mx-auto px-6 sm:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="text-center mb-20"
+          className="mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Projects</h2>
-          <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
-            Here are some of the projects I&apos;ve worked on. Each one represents a step in my journey as a developer.
-          </p>
+          <span className="text-xs font-semibold tracking-widest text-indigo-400 uppercase">Work</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mt-3 tracking-tight">Projects</h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {projects.map((project, index) => (
             <motion.div
               key={project.title}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: index * 0.15 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              whileHover={{ y: -8, scale: 1.02 }}
-              className="group"
+              className="group p-6 border border-white/[0.07] rounded-xl bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/[0.12] transition-all duration-200"
             >
-              <div className="relative p-8 bg-gradient-to-br from-slate-800/60 to-slate-800/30 border border-slate-700/50 rounded-3xl shadow-xl hover:shadow-2xl hover:border-indigo-500/50 transition-all duration-400 backdrop-blur-sm">
-                <div className="absolute -inset-1 bg-gradient-to-r from-indigo-600/20 via-purple-600/20 to-pink-600/20 rounded-3xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="relative">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="p-3 bg-gradient-to-br from-indigo-600/30 to-purple-600/30 rounded-lg border border-indigo-500/30 group-hover:from-indigo-600/50 group-hover:to-purple-600/50 transition-all duration-300">
-                      <project.icon className="text-indigo-400" size={24} />
-                    </div>
-                    <h3 className="text-2xl font-bold text-white transition-colors duration-300 group-hover:text-indigo-300">
-                      {project.title}
-                    </h3>
-                  </div>
-                  <p className="text-slate-300 leading-relaxed">
-                    {project.description}
-                  </p>
-                </div>
+              <div className="mb-4 p-2.5 w-fit rounded-md border border-white/10 text-indigo-400 bg-indigo-500/10">
+                <project.icon size={18} />
               </div>
+              <h3 className="text-base font-semibold text-white mb-2">{project.title}</h3>
+              <p className="text-sm text-slate-400 leading-relaxed">{project.description}</p>
             </motion.div>
           ))}
         </div>

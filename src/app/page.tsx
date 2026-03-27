@@ -29,20 +29,8 @@ export default function Home() {
       })
     }
 
-    const handleMouseMove = (e: MouseEvent) => {
-      const cursor = document.querySelector('.cursor-glow') as HTMLElement
-      if (cursor) {
-        cursor.style.left = e.clientX + 'px'
-        cursor.style.top = e.clientY + 'px'
-      }
-    }
-
     window.addEventListener('scroll', handleScroll)
-    window.addEventListener('mousemove', handleMouseMove)
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-      window.removeEventListener('mousemove', handleMouseMove)
-    }
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   return (
