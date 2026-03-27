@@ -7,14 +7,14 @@ html {
 }
 
 body {
-  background-color: #1c2208;
-  color: #e6e8cc;
+  background-color: #edefd8;
+  color: #1c2208;
   overflow-x: hidden;
 }
 
 ::selection {
-  background-color: rgba(122, 140, 74, 0.4);
-  color: #e6e8cc;
+  background-color: rgba(122, 140, 74, 0.3);
+  color: #1c2208;
 }
 
 ::-webkit-scrollbar {
@@ -22,11 +22,11 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #1c2208;
+  background: #edefd8;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #3a460f;
+  background: #b5c280;
   border-radius: 3px;
 }
 

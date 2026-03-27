@@ -21,7 +21,7 @@ const ProjectsSection = () => {
   ]
 
   return (
-    <section id="projects" className="py-28 border-t border-moss/10">
+    <section id="projects" className="py-28 border-t border-forest/10">
       <div className="max-w-6xl mx-auto px-6 sm:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -31,7 +31,7 @@ const ProjectsSection = () => {
           className="mb-16"
         >
           <span className="text-xs font-semibold tracking-widest text-sage uppercase">Work</span>
-          <h2 className="text-3xl md:text-4xl font-bold text-cream mt-3 tracking-tight">Projects</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-forest mt-3 tracking-tight">Projects</h2>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -42,13 +42,13 @@ const ProjectsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="group p-6 border border-moss/15 rounded-xl bg-olive/40 hover:bg-olive/70 hover:border-moss/35 transition-all duration-200"
+              className="group p-6 border border-forest/10 rounded-xl bg-parchment hover:border-sage/40 transition-all duration-200"
             >
-              <div className="mb-4 p-2.5 w-fit rounded-md border border-moss/25 text-sage bg-sage/10 group-hover:bg-sage/20 transition-colors duration-200">
+              <div className="mb-4 p-2.5 w-fit rounded-md border border-forest/10 text-sage bg-sage/10 group-hover:bg-sage/20 transition-colors duration-200">
                 <project.icon size={18} />
               </div>
-              <h3 className="text-base font-semibold text-cream mb-2">{project.title}</h3>
-              <p className="text-sm text-cream/55 leading-relaxed">{project.description}</p>
+              <h3 className="text-base font-semibold text-forest mb-2">{project.title}</h3>
+              <p className="text-sm text-forest/55 leading-relaxed">{project.description}</p>
             </motion.div>
           ))}
         </div>

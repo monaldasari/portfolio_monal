@@ -25,10 +25,10 @@ const HomeSection = ({ onResumeClick }: HomeSectionProps) => {
             <span className="inline-block text-xs font-semibold tracking-widest text-sage uppercase mb-6">
               Web Developer Intern
             </span>
-            <h1 className="text-5xl md:text-6xl font-bold text-cream mb-5 leading-[1.1] tracking-tight">
+            <h1 className="text-5xl md:text-6xl font-bold text-forest mb-5 leading-[1.1] tracking-tight">
               Monal Dasari
             </h1>
-            <p className="text-base text-cream/55 mb-8 max-w-md leading-relaxed">
+            <p className="text-base text-forest/55 mb-8 max-w-md leading-relaxed">
               Building clean, fast web experiences with a focus on good design and solid fundamentals.
             </p>
 
@@ -40,7 +40,7 @@ const HomeSection = ({ onResumeClick }: HomeSectionProps) => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={link.label}
-                  className="p-2.5 rounded-md border border-moss/20 text-cream/50 hover:text-cream hover:border-moss/50 transition-all duration-200"
+                  className="p-2.5 rounded-md border border-forest/15 text-forest/50 hover:text-forest hover:border-forest/35 transition-all duration-200"
                 >
                   <link.icon size={18} />
                 </a>
@@ -50,13 +50,13 @@ const HomeSection = ({ onResumeClick }: HomeSectionProps) => {
             <div className="flex flex-col sm:flex-row gap-3">
               <button
                 onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
-                className="px-6 py-2.5 bg-sage hover:bg-moss text-forest text-sm font-semibold rounded-md transition-colors duration-200"
+                className="px-6 py-2.5 bg-forest hover:bg-olive text-cream text-sm font-semibold rounded-md transition-colors duration-200"
               >
                 View Projects
               </button>
               <button
                 onClick={onResumeClick}
-                className="px-6 py-2.5 border border-moss/25 hover:border-moss/60 text-cream/70 hover:text-cream text-sm font-medium rounded-md transition-all duration-200"
+                className="px-6 py-2.5 border border-forest/20 hover:border-forest/50 text-forest/60 hover:text-forest text-sm font-medium rounded-md transition-all duration-200"
               >
                 View Resume
               </button>
@@ -69,7 +69,7 @@ const HomeSection = ({ onResumeClick }: HomeSectionProps) => {
             transition={{ duration: 0.6, delay: 0.15 }}
             className="flex justify-center md:justify-end"
           >
-            <div className="relative w-72 h-72 md:w-80 md:h-80 rounded-2xl overflow-hidden border border-moss/20">
+            <div className="relative w-72 h-72 md:w-80 md:h-80 rounded-2xl overflow-hidden border border-forest/10">
               <Image
                 src="/profile.jpg"
                 alt="Monal Dasari"

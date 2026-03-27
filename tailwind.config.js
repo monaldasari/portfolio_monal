@@ -9,10 +9,11 @@ module.exports = {
     extend: {
       colors: {
         forest:  '#1c2208',
-        olive:   '#272e0c',
+        olive:   '#2a3010',
         sage:    '#7a8c4a',
         moss:    '#b5c280',
-        cream:   '#e6e8cc',
+        cream:   '#edefd8',
+        parchment: '#e0e3c4',
       },
       fontFamily: {
         inter: ['Inter', 'sans-serif'],

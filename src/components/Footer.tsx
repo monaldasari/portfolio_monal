@@ -8,9 +8,9 @@ const Footer = () => {
   ]
 
   return (
-    <footer className="border-t border-moss/10 py-10">
+    <footer className="border-t border-forest/10 py-10">
       <div className="max-w-6xl mx-auto px-6 sm:px-8 flex flex-col sm:flex-row justify-between items-center gap-4">
-        <p className="text-sm text-cream/30">
+        <p className="text-sm text-forest/35">
           © {new Date().getFullYear()} Monal Dasari
         </p>
         <div className="flex items-center gap-3">
@@ -21,7 +21,7 @@ const Footer = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={link.label}
-              className="p-2 text-cream/30 hover:text-cream transition-colors duration-200"
+              className="p-2 text-forest/35 hover:text-forest transition-colors duration-200"
             >
               <link.icon size={16} />
             </a>

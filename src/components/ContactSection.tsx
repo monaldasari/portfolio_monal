@@ -52,14 +52,14 @@ const ContactSection = () => {
   }
 
   const inputClass = (field: string) =>
-    `w-full px-4 py-2.5 text-sm bg-olive/50 border rounded-md text-cream placeholder-cream/30 focus:outline-none focus:ring-1 transition-colors duration-200 ${
+    `w-full px-4 py-2.5 text-sm bg-parchment border rounded-md text-forest placeholder-forest/30 focus:outline-none focus:ring-1 transition-colors duration-200 ${
       errors[field]
-        ? 'border-red-500/50 focus:ring-red-400/40'
-        : 'border-moss/20 hover:border-moss/40 focus:border-sage/60 focus:ring-sage/20'
+        ? 'border-red-400/60 focus:ring-red-400/30'
+        : 'border-forest/15 hover:border-forest/30 focus:border-sage/60 focus:ring-sage/20'
     }`
 
   return (
-    <section id="contact" className="py-28 border-t border-moss/10">
+    <section id="contact" className="py-28 border-t border-forest/10">
       <div className="max-w-6xl mx-auto px-6 sm:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -69,10 +69,10 @@ const ContactSection = () => {
           className="mb-16"
         >
           <span className="text-xs font-semibold tracking-widest text-sage uppercase">Contact</span>
-          <h2 className="text-3xl md:text-4xl font-bold text-cream mt-3 tracking-tight">Get In Touch</h2>
-          <p className="text-cream/55 mt-4 max-w-md leading-relaxed text-sm">
+          <h2 className="text-3xl md:text-4xl font-bold text-forest mt-3 tracking-tight">Get In Touch</h2>
+          <p className="text-forest/55 mt-4 max-w-md leading-relaxed text-sm">
             Have something in mind? Reach out at{' '}
-            <a href="mailto:monaldasari2007@gmail.com" className="text-moss hover:text-cream transition-colors">
+            <a href="mailto:monaldasari2007@gmail.com" className="text-sage hover:text-forest transition-colors">
               monaldasari2007@gmail.com
             </a>{' '}
             or use the form below.
@@ -88,7 +88,7 @@ const ContactSection = () => {
         >
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label htmlFor="name" className="block text-xs font-medium text-cream/50 mb-1.5">Name</label>
+              <label htmlFor="name" className="block text-xs font-medium text-forest/50 mb-1.5">Name</label>
               <input
                 type="text"
                 id="name"
@@ -98,11 +98,11 @@ const ContactSection = () => {
                 className={inputClass('name')}
                 placeholder="Your name"
               />
-              {errors.name && <p className="text-red-400/80 text-xs mt-1">{errors.name}</p>}
+              {errors.name && <p className="text-red-500/70 text-xs mt-1">{errors.name}</p>}
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-xs font-medium text-cream/50 mb-1.5">Email</label>
+              <label htmlFor="email" className="block text-xs font-medium text-forest/50 mb-1.5">Email</label>
               <input
                 type="email"
                 id="email"
@@ -112,11 +112,11 @@ const ContactSection = () => {
                 className={inputClass('email')}
                 placeholder="your.email@example.com"
               />
-              {errors.email && <p className="text-red-400/80 text-xs mt-1">{errors.email}</p>}
+              {errors.email && <p className="text-red-500/70 text-xs mt-1">{errors.email}</p>}
             </div>
 
             <div>
-              <label htmlFor="message" className="block text-xs font-medium text-cream/50 mb-1.5">Message</label>
+              <label htmlFor="message" className="block text-xs font-medium text-forest/50 mb-1.5">Message</label>
               <textarea
                 id="message"
                 name="message"
@@ -126,7 +126,7 @@ const ContactSection = () => {
                 className={`${inputClass('message')} resize-none`}
                 placeholder="Your message..."
               />
-              {errors.message && <p className="text-red-400/80 text-xs mt-1">{errors.message}</p>}
+              {errors.message && <p className="text-red-500/70 text-xs mt-1">{errors.message}</p>}
             </div>
 
             {status !== 'idle' && (
@@ -134,7 +134,7 @@ const ContactSection = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 className={`text-sm ${
-                  status === 'success' ? 'text-moss' : status === 'error' ? 'text-red-400' : 'text-cream/50'
+                  status === 'success' ? 'text-sage' : status === 'error' ? 'text-red-500' : 'text-forest/50'
                 }`}
               >
                 {statusMessage}
@@ -144,7 +144,7 @@ const ContactSection = () => {
             <button
               type="submit"
               disabled={status === 'sending'}
-              className="w-full py-2.5 text-sm font-semibold bg-sage hover:bg-moss text-forest rounded-md transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full py-2.5 text-sm font-semibold bg-forest hover:bg-olive text-cream rounded-md transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {status === 'sending' ? 'Sending...' : 'Send Message'}
             </button>
