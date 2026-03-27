@@ -7,9 +7,11 @@ import HomeSection from '@/components/HomeSection'
 import AboutSection from '@/components/AboutSection'
 import ProjectsSection from '@/components/ProjectsSection'
 import ContactSection from '@/components/ContactSection'
+import ResumePDF from '@/components/ResumePDF'
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState('home')
+  const [showResume, setShowResume] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -47,12 +49,13 @@ export default function Home() {
     <div className="min-h-screen">
       <Navbar activeSection={activeSection} />
       <main>
-        <HomeSection />
+        <HomeSection onResumeClick={() => setShowResume(true)} />
         <AboutSection />
         <ProjectsSection />
         <ContactSection />
       </main>
       <Footer />
+      <ResumePDF isOpen={showResume} onClose={() => setShowResume(false)} />
     </div>
   )
 }

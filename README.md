@@ -32,7 +32,7 @@ A modern, clean, and responsive personal portfolio website built with Next.js an
 
 3. Run the development server:
    ```bash
-   npm run dev
+   npm run devyeah oaky
    ```
 
 4. Open [http://localhost:3000](http://localhost:3000) in your browser.

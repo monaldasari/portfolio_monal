@@ -1,12 +1,14 @@
 import { ReactNode } from 'react'
+import { motion } from 'framer-motion'
 
 interface ButtonProps {
   children: ReactNode
   onClick?: () => void
   type?: 'button' | 'submit' | 'reset'
-  variant?: 'primary' | 'outline'
+  variant?: 'primary' | 'outline' | 'secondary'
   size?: 'sm' | 'md' | 'lg'
   className?: string
+  disabled?: boolean
 }
 
 const Button = ({
@@ -16,12 +18,14 @@ const Button = ({
   variant = 'primary',
   size = 'md',
   className = '',
+  disabled = false,
 }: ButtonProps) => {
-  const baseClasses = 'inline-flex items-center justify-center font-medium rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 hover:scale-105 active:scale-95'
+  const baseClasses = 'inline-flex items-center justify-center font-semibold rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed'
 
   const variantClasses = {
-    primary: 'bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:from-blue-600 hover:to-purple-700 focus:ring-blue-500 shadow-lg hover:shadow-xl',
-    outline: 'border-2 border-gray-300 text-gray-700 bg-white hover:bg-gray-50 hover:border-blue-300 focus:ring-blue-500',
+    primary: 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:from-indigo-700 hover:to-purple-700 focus:ring-indigo-500 shadow-lg hover:shadow-2xl shadow-indigo-500/30 hover:shadow-indigo-500/50',
+    secondary: 'bg-gradient-to-r from-slate-700 to-slate-800 text-white hover:from-slate-600 hover:to-slate-700 focus:ring-slate-500 shadow-lg hover:shadow-xl border border-slate-600/50',
+    outline: 'border-2 border-indigo-500/50 text-indigo-300 bg-transparent hover:bg-indigo-600/10 hover:border-indigo-400 focus:ring-indigo-500',
   }
 
   const sizeClasses = {
@@ -31,13 +35,16 @@ const Button = ({
   }
 
   return (
-    <button
+    <motion.button
+      whileHover={{ scale: disabled ? 1 : 1.05 }}
+      whileTap={{ scale: disabled ? 1 : 0.95 }}
       type={type}
       onClick={onClick}
+      disabled={disabled}
       className={`${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`}
     >
       {children}
-    </button>
+    </motion.button>
   )
 }
 
