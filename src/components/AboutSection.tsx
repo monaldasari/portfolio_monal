@@ -1,10 +1,27 @@
+'use client'
+
 import { motion } from 'framer-motion'
 
 const AboutSection = () => {
   const skills = {
-    'Technical Skills': ['C', 'Python', 'HTML', 'CSS'],
-    'Web Development': ['Responsive Design', 'Frontend Development'],
-    'Design & Tools': ['UI/UX Fundamentals', 'VS Code', 'Git & GitHub'],
+    'Languages': ['C', 'Python', 'HTML', 'CSS'],
+    'Interests': ['Web Development', 'UI/UX Design'],
+    'Tools': ['VS Code', 'Git & GitHub'],
+  }
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.08,
+      },
+    },
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 10 },
+    visible: { opacity: 1, y: 0 },
   }
 
   return (
@@ -27,37 +44,41 @@ const AboutSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
             viewport={{ once: true }}
-            className="space-y-4"
+            className="space-y-5"
           >
-            <p className="text-forest/65 leading-relaxed">
-              I am a web developer intern focused on building well-structured, responsive interfaces. I work primarily with Next.js, React, Tailwind CSS, and TypeScript.
+            <p className="text-forest/70 leading-relaxed">
+              I am a motivated student with a strong passion for learning and growing in the field of technology. I have a foundational understanding of programming languages like C and Python, and I am currently exploring web development with a keen interest in UI/UX design.
             </p>
-            <p className="text-forest/65 leading-relaxed">
-              I care about clean code, accessible design, and shipping work that holds up. Currently sharpening my skills through real projects and consistent practice.
+            <p className="text-forest/70 leading-relaxed">
+              I enjoy the process of turning ideas into simple, user-friendly digital experiences. As I continue to learn, I focus on building practical skills, improving my problem-solving abilities, and understanding how design and development work together.
+            </p>
+            <p className="text-forest/70 leading-relaxed">
+              I am always open to new opportunities that help me learn, create, and grow as a developer.
             </p>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
             viewport={{ once: true }}
             className="space-y-6"
           >
             {Object.entries(skills).map(([category, items]) => (
-              <div key={category}>
+              <motion.div key={category} variants={itemVariants}>
                 <p className="text-xs font-semibold tracking-widest text-sage uppercase mb-3">{category}</p>
                 <div className="flex flex-wrap gap-2">
                   {items.map((skill) => (
-                    <span
+                    <motion.span
                       key={skill}
-                      className="px-3 py-1 text-sm text-forest/70 border border-forest/15 rounded-md bg-parchment hover:border-sage/50 hover:text-forest transition-colors duration-150"
+                      whileHover={{ scale: 1.05 }}
+                      className="px-3 py-1.5 text-sm text-forest/70 border border-forest/15 rounded-md bg-parchment hover:border-sage/50 hover:text-forest hover:bg-sage/5 transition-colors duration-200 cursor-default"
                     >
                       {skill}
-                    </span>
+                    </motion.span>
                   ))}
                 </div>
-              </div>
+              </motion.div>
             ))}
           </motion.div>
         </div>
