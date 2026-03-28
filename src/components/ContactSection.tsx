@@ -32,10 +32,9 @@ const ContactSection = () => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          access_key: '4c98c50b-d4a4-4f11-8e9f-b1c0d2c3e4f5', // Public access key
+          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY,
           subject: `Portfolio Contact from ${formData.name}`,
           from_name: 'Portfolio Contact Form',
-          to: 'monaldasari2007@gmail.com',
           name: formData.name,
           email: formData.email,
           message: formData.message,
