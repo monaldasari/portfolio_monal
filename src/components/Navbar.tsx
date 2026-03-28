@@ -60,7 +60,8 @@ const Navbar = ({ activeSection }: NavbarProps) => {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               href="/resume.pdf"
-              download="Monal_Dasari_Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               className="ml-2 px-4 py-1.5 text-sm font-semibold bg-forest hover:bg-olive text-cream rounded-md transition-colors duration-200"
             >
               Resume

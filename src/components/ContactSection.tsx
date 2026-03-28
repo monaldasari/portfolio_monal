@@ -27,23 +27,34 @@ const ContactSection = () => {
     setStatusMessage('Sending...')
 
     try {
-      const response = await fetch('/api/contact', {
+      // Using Web3Forms - free email service
+      const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          access_key: '4c98c50b-d4a4-4f11-8e9f-b1c0d2c3e4f5', // Public access key
+          subject: `Portfolio Contact from ${formData.name}`,
+          from_name: 'Portfolio Contact Form',
+          to: 'monaldasari2007@gmail.com',
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        }),
       })
 
       const data = await response.json()
 
-      if (!response.ok) throw new Error(data.error || 'Request failed')
-
-      setStatus('success')
-      setStatusMessage("Message sent successfully. I'll get back to you soon.")
-      setFormData({ name: '', email: '', message: '' })
-      setTimeout(() => { setStatus('idle'); setStatusMessage('') }, 5000)
+      if (data.success) {
+        setStatus('success')
+        setStatusMessage("Message sent successfully. I'll get back to you soon.")
+        setFormData({ name: '', email: '', message: '' })
+        setTimeout(() => { setStatus('idle'); setStatusMessage('') }, 5000)
+      } else {
+        throw new Error('Failed to send')
+      }
     } catch {
       setStatus('error')
-      setStatusMessage('Unable to send right now. Please try again or email me directly.')
+      setStatusMessage('Unable to send right now. Please email me directly at monaldasari2007@gmail.com')
       setTimeout(() => { setStatus('idle') }, 5000)
     }
   }
