@@ -27,21 +27,33 @@ const ContactSection = () => {
     setStatusMessage('Sending...')
 
     try {
-      const response = await fetch('/api/contact', {
+      // Using Web3Forms - free email service
+      const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY,
+          subject: `Portfolio Contact from ${formData.name}`,
+          from_name: 'Portfolio Contact Form',
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        }),
       })
 
-      if (!response.ok) throw new Error('Request failed')
+      const data = await response.json()
 
-      setStatus('success')
-      setStatusMessage("Message sent. I'll get back to you soon.")
-      setFormData({ name: '', email: '', message: '' })
-      setTimeout(() => { setStatus('idle'); setStatusMessage('') }, 5000)
+      if (data.success) {
+        setStatus('success')
+        setStatusMessage("Message sent successfully. I'll get back to you soon.")
+        setFormData({ name: '', email: '', message: '' })
+        setTimeout(() => { setStatus('idle'); setStatusMessage('') }, 5000)
+      } else {
+        throw new Error('Failed to send')
+      }
     } catch {
       setStatus('error')
-      setStatusMessage('Unable to send right now. Please try again.')
+      setStatusMessage('Unable to send right now. Please email me directly at monaldasari2007@gmail.com')
       setTimeout(() => { setStatus('idle') }, 5000)
     }
   }
@@ -52,11 +64,26 @@ const ContactSection = () => {
   }
 
   const inputClass = (field: string) =>
-    `w-full px-4 py-2.5 text-sm bg-parchment border rounded-md text-forest placeholder-forest/30 focus:outline-none focus:ring-1 transition-colors duration-200 ${
+    `w-full px-4 py-2.5 text-sm bg-parchment border rounded-md text-forest placeholder-forest/30 focus:outline-none focus:ring-2 transition-all duration-200 ${
       errors[field]
-        ? 'border-red-400/60 focus:ring-red-400/30'
-        : 'border-forest/15 hover:border-forest/30 focus:border-sage/60 focus:ring-sage/20'
+        ? 'border-red-400/60 focus:ring-red-400/20'
+        : 'border-forest/15 hover:border-forest/25 focus:border-sage/60 focus:ring-sage/10'
     }`
+
+  const formVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  }
+
+  const fieldVariants = {
+    hidden: { opacity: 0, y: 15 },
+    visible: { opacity: 1, y: 0 },
+  }
 
   return (
     <section id="contact" className="py-28 border-t border-forest/10">
@@ -70,9 +97,9 @@ const ContactSection = () => {
         >
           <span className="text-xs font-semibold tracking-widest text-sage uppercase">Contact</span>
           <h2 className="text-3xl md:text-4xl font-bold text-forest mt-3 tracking-tight">Get In Touch</h2>
-          <p className="text-forest/55 mt-4 max-w-md leading-relaxed text-sm">
+          <p className="text-forest/60 mt-4 max-w-md leading-relaxed text-sm">
             Have something in mind? Reach out at{' '}
-            <a href="mailto:monaldasari2007@gmail.com" className="text-sage hover:text-forest transition-colors">
+            <a href="mailto:monaldasari2007@gmail.com" className="text-sage hover:text-forest underline underline-offset-2 transition-colors">
               monaldasari2007@gmail.com
             </a>{' '}
             or use the form below.
@@ -80,15 +107,15 @@ const ContactSection = () => {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
+          variants={formVariants}
+          initial="hidden"
+          whileInView="visible"
           viewport={{ once: true }}
           className="max-w-md"
         >
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <label htmlFor="name" className="block text-xs font-medium text-forest/50 mb-1.5">Name</label>
+          <form onSubmit={handleSubmit} className="space-y-5">
+            <motion.div variants={fieldVariants}>
+              <label htmlFor="name" className="block text-xs font-medium text-forest/55 mb-1.5">Name</label>
               <input
                 type="text"
                 id="name"
@@ -98,11 +125,19 @@ const ContactSection = () => {
                 className={inputClass('name')}
                 placeholder="Your name"
               />
-              {errors.name && <p className="text-red-500/70 text-xs mt-1">{errors.name}</p>}
-            </div>
+              {errors.name && (
+                <motion.p 
+                  initial={{ opacity: 0, y: -5 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="text-red-500/70 text-xs mt-1.5"
+                >
+                  {errors.name}
+                </motion.p>
+              )}
+            </motion.div>
 
-            <div>
-              <label htmlFor="email" className="block text-xs font-medium text-forest/50 mb-1.5">Email</label>
+            <motion.div variants={fieldVariants}>
+              <label htmlFor="email" className="block text-xs font-medium text-forest/55 mb-1.5">Email</label>
               <input
                 type="email"
                 id="email"
@@ -112,11 +147,19 @@ const ContactSection = () => {
                 className={inputClass('email')}
                 placeholder="your.email@example.com"
               />
-              {errors.email && <p className="text-red-500/70 text-xs mt-1">{errors.email}</p>}
-            </div>
+              {errors.email && (
+                <motion.p 
+                  initial={{ opacity: 0, y: -5 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="text-red-500/70 text-xs mt-1.5"
+                >
+                  {errors.email}
+                </motion.p>
+              )}
+            </motion.div>
 
-            <div>
-              <label htmlFor="message" className="block text-xs font-medium text-forest/50 mb-1.5">Message</label>
+            <motion.div variants={fieldVariants}>
+              <label htmlFor="message" className="block text-xs font-medium text-forest/55 mb-1.5">Message</label>
               <textarea
                 id="message"
                 name="message"
@@ -126,28 +169,39 @@ const ContactSection = () => {
                 className={`${inputClass('message')} resize-none`}
                 placeholder="Your message..."
               />
-              {errors.message && <p className="text-red-500/70 text-xs mt-1">{errors.message}</p>}
-            </div>
+              {errors.message && (
+                <motion.p 
+                  initial={{ opacity: 0, y: -5 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="text-red-500/70 text-xs mt-1.5"
+                >
+                  {errors.message}
+                </motion.p>
+              )}
+            </motion.div>
 
             {status !== 'idle' && (
               <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
+                initial={{ opacity: 0, y: 5 }}
+                animate={{ opacity: 1, y: 0 }}
                 className={`text-sm ${
-                  status === 'success' ? 'text-sage' : status === 'error' ? 'text-red-500' : 'text-forest/50'
+                  status === 'success' ? 'text-sage' : status === 'error' ? 'text-red-500/80' : 'text-forest/50'
                 }`}
               >
                 {statusMessage}
               </motion.p>
             )}
 
-            <button
+            <motion.button
+              variants={fieldVariants}
               type="submit"
               disabled={status === 'sending'}
+              whileHover={{ scale: 1.01 }}
+              whileTap={{ scale: 0.99 }}
               className="w-full py-2.5 text-sm font-semibold bg-forest hover:bg-olive text-cream rounded-md transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {status === 'sending' ? 'Sending...' : 'Send Message'}
-            </button>
+            </motion.button>
           </form>
         </motion.div>
       </div>
